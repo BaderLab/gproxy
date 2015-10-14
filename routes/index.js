@@ -9,7 +9,9 @@ router.get('/', function(req, res, next) {
 
 // at url / with POST
 router.post('/', function(req, res, next) {
-  request.post('http://www.google-analytics.com', { // make req to GA
+  res.append('Access-Control-Allow-Origin', '*'); // allow anyone to make cross-origin requests
+
+  request.post('http://www.google-analytics.com/collect', { // make req to GA
     form: req.body // send same params as client
   }).pipe( res ); // and proxy back to client result
 });
